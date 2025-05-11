@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login & Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .form-hidden {
+            display: none;
+        }
+        
+        .tab-active {
+            color: #1d4ed8;
+            border-bottom: 2px solid #1d4ed8;
+            font-weight: 600;
+        }
+
+        .tab-inactive {
+            color: #6b7280;
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="flex w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Form Panel -->
+        <div class="relative w-full md:w-1/2 p-8">
+            <!-- Toggle -->
+            <div class="flex justify-center space-x-4 mb-6">
+                <button id="btn-signin" class="px-4 py-2 tab-active focus:outline-none">
+                    Sign In
+                </button>
+                <button id="btn-signup" class="px-4 py-2 tab-inactive focus:outline-none">
+                    Sign Up
+                </button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="form-signin" class="space-y-4">
+                <h2 class="text-2xl font-semibold text-gray-700">Welcome Back!</h2>
+                <div>
+                    <label class="block text-gray-700">Email address</label>
+                    <input type="email" placeholder="you@example.com"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-700" />
+                </div>
+                <div>
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" placeholder="••••••••"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-700" />
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="form-checkbox text-blue-700" />
+                        <span class="ml-2 text-gray-700">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm text-blue-700 hover:underline">Forgot password?</a>
+                </div>
+                <button type="submit"
+                    class="w-full px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="form-signup" class="space-y-4 form-hidden">
+                <h2 class="text-2xl font-semibold text-gray-700">Create Account</h2>
+                <div>
+                    <label class="block text-gray-700">Full Name</label>
+                    <input type="text" placeholder="John Doe"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-700" />
+                </div>
+                <div>
+                    <label class="block text-gray-700">Email address</label>
+                    <input type="email" placeholder="you@example.com"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-700" />
+                </div>
+                <div>
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" placeholder="••••••••"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-700" />
+                </div>
+                <button type="submit"
+                    class="w-full px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none">
+                    Sign Up
+                </button>
+            </form>
+        </div>
+
+        <!-- Image Panel -->
+        <div class="hidden md:block md:w-1/2 bg-blue-700">
+            <img src="img/ayam.png" alt="Illustration" class="object-cover w-full h-full" />
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSignIn = document.getElementById('btn-signin');
+            const btnSignUp = document.getElementById('btn-signup');
+            const formSignIn = document.getElementById('form-signin');
+            const formSignUp = document.getElementById('form-signup');
+
+            // Simple form switching without animation
+            btnSignIn.addEventListener('click', () => {
+                btnSignIn.classList.add('tab-active');
+                btnSignIn.classList.remove('tab-inactive');
+                btnSignUp.classList.add('tab-inactive');
+                btnSignUp.classList.remove('tab-active');
+                
+                formSignIn.classList.remove('form-hidden');
+                formSignUp.classList.add('form-hidden');
+            });
+
+            btnSignUp.addEventListener('click', () => {
+                btnSignUp.classList.add('tab-active');
+                btnSignUp.classList.remove('tab-inactive');
+                btnSignIn.classList.add('tab-inactive');
+                btnSignIn.classList.remove('tab-active');
+                
+                formSignUp.classList.remove('form-hidden');
+                formSignIn.classList.add('form-hidden');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" class="rounded-full" href="img/Logo.jpeg" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menambahkan Font Awesome untuk ikon yang digunakan -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <!-- STYLES (Tailwind Shortcut Classes) -->
+
+
+
+</head>
+
+<body class="bg-gray-100">
+    <!-- navbar -->
+    <nav
+        class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img class="rounded-full w-14 h-14 object-cover" src="img/Logo.jpeg" alt="Logo">
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-7 d-flex justify-center items-center">
+                    <a href="/index.html" class="text-gray-800 hover:text-blue-600">Beranda</a>
+                    <a href="#about" class="text-gray-800 hover:text-blue-600">Tentang kami</a>
+                    <a href="/menu.html" class="text-gray-800 hover:text-blue-600">Menu</a>
+                    <a href="#kontak" class="text-gray-800 hover:text-blue-600">Kontak</a>
+                    <a href="login.html"
+                        class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
+                        In</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-gray-800 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 rounded-lg shadow-md">
+            <a href="index.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Beranda</a>
+            <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tentang kami</a>
+            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
+            <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
+        </div>
+    </nav>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navbar = document.getElementsByTagName('nav')[0];
+        window.addEventListener('scroll', function () {
+            console.log(window.scrollY);
+            if (window.scrollY > 1) {
+                navbar.classList.replace('bg-transparant', 'nav-color');
+            } else if (this.window.scrollY <= 0) {
+                navbar.classList.replace('nav-color', 'bg-transparant')
+            }
+        });
+    </script>
+
+    <!-- Hero Parallax Section -->
+    <section class="relative h-[500px] bg-fixed bg-center bg-cover"
+        style="background-image: url('img/meja\ makan.png');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div> <!-- Overlay -->
+
+        <div class="relative z-10 flex flex-col justify-center items-center text-center text-white h-full px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Nasi Uduk 88 Brebes Berhias</h1>
+            <p class="text-lg md:text-2xl mb-6 max-w-xl">Cita rasa khas Brebes yang menggugah selera, langsung ke meja
+                Anda.</p>
+            <a href="#menu"
+                class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300">
+                Lihat Menu
+            </a>
+        </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <nav class="mt-6">
+        <ul class="flex justify-center space-x-8 border-b-2 border-gray-200 overflow-x-auto pb-2">
+            <li class="tab-item text-green-500 border-b-2 border-green-500 pb-2 px-1 whitespace-nowrap cursor-pointer"
+                onclick="switchTab('minuman')">Minuman</li>
+            <li class="tab-item text-gray-500 pb-2 px-1 whitespace-nowrap cursor-pointer"
+                onclick="switchTab('makanan')">Makanan</li>
+            <li class="tab-item text-gray-500 pb-2 px-1 whitespace-nowrap cursor-pointer" onclick="switchTab('paket')">
+                Menu Paket</li>
+        </ul>
+    </nav>
+
+    <!-- CONTENT CONTAINER -->
+    <div class="container mx-auto max-w-7xl py-12 px-4">
+
+        <!-- Minuman Section -->
+        <div id="minuman" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Tambahkan lebih banyak minuman di sini -->
+        </div>
+
+        <!-- Makanan Section -->
+        <div id="makanan" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+
+
+        </div>
+
+        <!-- Paket Section -->
+        <div id="paket" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Menu Card -->
+            <div class="flex items-center justify-between bg-white shadow-lg p-6 rounded-lg gap-4">
+                <div class="flex items-center">
+                    <img src="img/ayam.png" alt="Food image" class="w-12 h-12 rounded-full mr-4" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ayam Goreng</h2>
+                        <p class="text-sm text-gray-600">Ayam goreng krispi dengan bumbu rempah khas.</p>
+                        <p class="text-yellow-500 font-bold mt-1">Rp 35.000</p>
+                    </div>
+                </div>
+                <button onclick="openModal()"
+                    class="bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2 5m12-5l2 5m-6 0a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        function switchTab(tabId) {
+            // Sembunyikan semua section
+            document.getElementById("minuman").classList.add("hidden");
+            document.getElementById("makanan").classList.add("hidden");
+            document.getElementById("paket").classList.add("hidden");
+
+            // Tampilkan yang dipilih
+            document.getElementById(tabId).classList.remove("hidden");
+
+            // Reset semua tab styling
+            document.querySelectorAll(".tab-item").forEach(el => {
+                el.classList.remove("text-green-500", "border-green-500");
+                el.classList.add("text-gray-500", "border-transparent");
+            });
+
+            // Tambahkan styling ke tab aktif
+            event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
+        }
+    </script>
+
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed top-0 right-0 h-full w-full sm:w-80 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-[1100] overflow-hidden">
+
+        <!-- Header Sidebar dengan tombol Close -->
+        <div class="flex items-center justify-between p-4 border-b mb-3 bg-white sticky top-0 z-10">
+            <h2 class="text-xl font-semibold">Keranjang</h2>
+            <button onclick="closeModal()" class="text-gray-600 hover:text-red-500 text-xl">
+                ✖
+            </button>
+        </div>
+
+        <!-- Daftar Produk (Scrollable jika banyak item) -->
+        <div class="overflow-y-auto p-5 h-[calc(100vh-150px)]">
+            <!-- Menghitung tinggi agar tidak melebihi layar -->
+            <div class="flex flex-col space-y-4">
+                <!-- Contoh Produk -->
+                <div class="p-4 bg-white flex items-center w-full border rounded-lg">
+                    <img src="img/ayam.png" alt="Product" class="h-20 w-20 mr-5 rounded object-cover">
+                    <div class="flex-1">
+                        <h2 class="font-semibold">Ayam Goreng</h2>
+                        <div class="text-gray-500">Harga: <span class="font-medium">Rp 35.000</span></div>
+                        <div class="flex items-center mt-2">
+                            <button onclick="decrementValue(this)"
+                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
+                            <input type="number" value="1" min="1" class="w-12 p-1 text-center border mx-1">
+                            <button onclick="incrementValue(this)"
+                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Checkout (Fixed di bawah) -->
+        <div class="absolute bottom-0 left-0 w-full bg-white border-t p-4">
+            <div class="border border-orange-500 rounded-lg p-4 my-2">
+                <div class="flex justify-between mb-1">
+                    <span>Subtotal</span>
+                    <span>Rp 35.000</span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span>Biaya layanan</span>
+                    <span>Rp 2.000</span>
+                </div>
+                <div class="flex justify-between font-bold text-orange-500 text-xl mt-2">
+                    <span>Total</span>
+                    <span>Rp 37.000</span>
+                </div>
+            </div>
+            <button
+                class="w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition mt-2">
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-red-900 to-orange-800 text-white w-full py-10" id="kontak">
+
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <!-- Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Tentang Kami -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tentang Kami</h3>
+                    <p class="text-white leading-relaxed">
+                        Kami berkomitmen untuk menyajikan makanan berkualitas terbaik dan memberikan
+                        pengalaman makan
+                        yang luar biasa.
+                        <br><br>
+                        <strong>Jam Operasional:</strong> 10:30 - 23:59
+                    </p>
+                </div>
+
+                <!-- Tautan Cepat -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tautan Cepat</h3>
+                    <ul class="text-white space-y-2">
+                        <li><a href="#" class="hover:text-white transition">Beranda</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-white transition">Menu</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak Kami -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Kontak Kami</h3>
+                    <ul class="text-white space-y-2 text-sm">
+                        <li><span class="font-semibold">Alamat:</span> Jl. Abdul Rahman Saleh No.45, Husen
+                            Sastranegara,
+                            Kec. Cicendo, Kota Bandung, Jawa Barat 40174</li>
+                        <li><span class="font-semibold">Telepon:</span> +62 819-1047-1665</li>
+                        <li><span class="font-semibold">Email:</span> nu88brebes@gmail.com</li>
+                    </ul>
+                </div>
+
+                <!-- Formulir Kontak -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Kirim Pesan kepada Kami</h3>
+                    <form class="bg-white/30 backdrop-blur-md p-4 rounded-lg space-y-3">
+                        <input type="text" placeholder="Nama Anda"
+                            class="w-full p-2 border border-orange-500 rounded bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-green-500 focus:outline-none">
+
+                        <input type="email" placeholder="Email Anda"
+                            class="w-full p-2 border border-orange-500 rounded bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-green-500 focus:outline-none">
+
+                        <textarea rows="3" placeholder="Pesan Anda"
+                            class="w-full p-2 border border-orange-500 rounded bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-green-500 focus:outline-none"></textarea>
+
+                        <button type="submit"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition">
+                            Kirim
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-white    px-6 py-6">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-white">
+                <p>&copy; 2025 Nasi Uduk 88 Brebes. Seluruh hak cipta dilindungi.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="hover:text-white transition"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" class="hover:text-white transition"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" class="hover:text-white transition"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk membuka modal/sidebar
+        function openModal() {
+            document.getElementById('sidebar').classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fungsi untuk menutup modal/sidebar
+        function closeModal() {
+            document.getElementById('sidebar').classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fungsi untuk menambah jumlah item
+        function incrementValue(button) {
+            const input = button.previousElementSibling;
+            input.value = parseInt(input.value) + 1;
+        }
+
+        // Fungsi untuk mengurangi jumlah item
+        function decrementValue(button) {
+            const input = button.nextElementSibling;
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>
+</body>
+
+</html>
