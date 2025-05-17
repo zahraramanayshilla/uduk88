@@ -11,10 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
 
-    <!-- STYLES (Tailwind Shortcut Classes) -->
-
-
-
 </head>
 
 <body class="bg-gray-100">
@@ -59,7 +55,7 @@
     </nav>
 
     <script>
-       
+
     </script>
 
     <!-- Hero Parallax Section -->
@@ -224,28 +220,6 @@
         </div>
     </div>
 
-    <!-- SCRIPT -->
-    <script>
-        function switchTab(tabId) {
-            // Sembunyikan semua section
-            document.getElementById("minuman").classList.add("hidden");
-            document.getElementById("makanan").classList.add("hidden");
-            document.getElementById("paket").classList.add("hidden");
-
-            // Tampilkan yang dipilih
-            document.getElementById(tabId).classList.remove("hidden");
-
-            // Reset semua tab styling
-            document.querySelectorAll(".tab-item").forEach(el => {
-                el.classList.remove("text-green-500", "border-green-500");
-                el.classList.add("text-gray-500", "border-transparent");
-            });
-
-            // Tambahkan styling ke tab aktif
-            event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
-        }
-    </script>
-
     <!-- Sidebar -->
     <div id="sidebar"
         class="fixed top-0 right-0 h-full w-full sm:w-80 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-[1100] overflow-hidden">
@@ -386,17 +360,35 @@
     </footer>
 
     <script>
+        // navbar
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navbar = document.getElementsByTagName('nav')[0];
+        window.addEventListener('scroll', function () {
+            console.log(window.scrollY);
+            if (window.scrollY > 1) {
+                navbar.classList.replace('bg-transparant', 'nav-color');
+            } else if (this.window.scrollY <= 0) {
+                navbar.classList.replace('nav-color', 'bg-transparant')
+            }
+        });
+        // sidebar
         // Fungsi untuk membuka modal/sidebar
-        function openModal() {
+        window.openModal = function () {
             document.getElementById('sidebar').classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
         }
 
-        // Fungsi untuk menutup modal/sidebar
-        function closeModal() {
+        window.closeModal = function () {
             document.getElementById('sidebar').classList.add('translate-x-full');
             document.body.style.overflow = 'auto';
         }
+
 
         // Fungsi untuk menambah jumlah item
         function incrementValue(button) {
@@ -410,6 +402,25 @@
             if (parseInt(input.value) > 1) {
                 input.value = parseInt(input.value) - 1;
             }
+        }
+
+        function switchTab(tabId) {
+            // Sembunyikan semua section
+            document.getElementById("minuman").classList.add("hidden");
+            document.getElementById("makanan").classList.add("hidden");
+            document.getElementById("paket").classList.add("hidden");
+
+            // Tampilkan yang dipilih
+            document.getElementById(tabId).classList.remove("hidden");
+
+            // Reset semua tab styling
+            document.querySelectorAll(".tab-item").forEach(el => {
+                el.classList.remove("text-green-500", "border-green-500");
+                el.classList.add("text-gray-500", "border-transparent");
+            });
+
+            // Tambahkan styling ke tab aktif
+            event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
         }
     </script>
 </body>

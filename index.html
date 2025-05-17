@@ -148,8 +148,8 @@
 
     </div>
 
-    <!-- paralax testimoni -->
-    <div class="relative h-[600px] parallax" style="background-image: url('./img/nasiudukbanner.png');">
+    <!-- paralax menu -->
+    <div class="relative h-[600px] parallax" style="background-image: url('./img/nasiudukbanner.png');" id="menu">
         <section class="bg-grey-50 py-14 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="text-3xl font-bold text-orange-600 mb-5">🌟 Menu Best Seller 🌟</h2>
@@ -252,6 +252,68 @@
                 </div>
             </div>
         </section>
+    </div>
+
+
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed top-0 right-0 h-full w-full sm:w-80 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-[1100] overflow-hidden">
+
+        <!-- Header Sidebar dengan tombol Close -->
+        <div class="flex items-center justify-between p-4 border-b mb-3 bg-white sticky top-0 z-10">
+            <h2 class="text-xl font-semibold">Keranjang</h2>
+            <button onclick="closeModal()" class="text-gray-600 hover:text-red-500 text-xl">
+                ✖
+            </button>
+        </div>
+
+        <!-- Daftar Produk (Scrollable jika banyak item) -->
+        <div class="overflow-y-auto p-5 h-[calc(100vh-150px)]">
+            <!-- Menghitung tinggi agar tidak melebihi layar -->
+            <div class="flex flex-col space-y-4">
+                <!-- Contoh Produk -->
+                <div class="p-4 bg-white flex items-center w-full border rounded-lg">
+                    <img src="img/ayam.png" alt="Product" class="h-20 w-20 mr-5 rounded object-cover">
+                    <div class="flex-1">
+                        <h2 class="font-semibold">Ayam Goreng</h2>
+                        <div class="text-gray-500">Harga: <span class="font-medium">Rp 35.000</span></div>
+                        <div class="flex items-center mt-2">
+                            <button onclick="decrementValue(this)"
+                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
+                            <input type="number" value="1" min="1" class="w-12 p-1 text-center border mx-1">
+                            <button onclick="incrementValue(this)"
+                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Checkout (Fixed di bawah) -->
+        <div class="absolute bottom-0 left-0 w-full bg-white border-t p-4">
+            <div class="border border-orange-500 rounded-lg p-4 my-2">
+                <div class="flex justify-between mb-1">
+                    <span>Subtotal</span>
+                    <span>Rp 35.000</span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span>Biaya layanan</span>
+                    <span>Rp 2.000</span>
+                </div>
+                <div class="flex justify-between font-bold text-orange-500 text-xl mt-2">
+                    <span>Total</span>
+                    <span>Rp 37.000</span>
+                </div>
+            </div>
+            <button
+                class="w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition mt-2">
+                Checkout
+            </button>
+        </div>
     </div>
 
     <!-- Maps Section - Card Style -->
@@ -421,71 +483,52 @@
         </div>
     </footer>
 
-
     <script>
-        // penambahan dan pengurangan jumlah item
+        // navbar
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navbar = document.getElementsByTagName('nav')[0];
+        window.addEventListener('scroll', function () {
+            console.log(window.scrollY);
+            if (window.scrollY > 1) {
+                navbar.classList.replace('bg-transparant', 'nav-color');
+            } else if (this.window.scrollY <= 0) {
+                navbar.classList.replace('nav-color', 'bg-transparant')
+            }
+        });
+        // sidebar
+        // Fungsi untuk membuka modal/sidebar
+        window.openModal = function () {
+            document.getElementById('sidebar').classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.closeModal = function () {
+            document.getElementById('sidebar').classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+
+        // Fungsi untuk menambah jumlah item
         function incrementValue(button) {
-            const input = button.parentNode.querySelector('input[type="number"]');
+            const input = button.previousElementSibling;
             input.value = parseInt(input.value) + 1;
         }
 
+        // Fungsi untuk mengurangi jumlah item
         function decrementValue(button) {
-            const input = button.parentNode.querySelector('input[type="number"]');
-            // Pastikan nilai tidak kurang dari nilai minimum
-            if (parseInt(input.value) > parseInt(input.min)) {
+            const input = button.nextElementSibling;
+            if (parseInt(input.value) > 1) {
                 input.value = parseInt(input.value) - 1;
             }
         }
 
-        // sidebar keranjang
-        const toggleSidebar = document.getElementById('toggleSidebar');
-        const closeSidebar = document.getElementById('closeSidebar');
-        const sidebar = document.getElementById('sidebar');
-
-        // Logika untuk membuka sidebar
-        toggleSidebar.addEventListener('click', () => {
-            sidebar.classList.remove('translate-x-full');
-        });
-
-        // Logika untuk menutup sidebar
-        closeSidebar.addEventListener('click', () => {
-            sidebar.classList.add('translate-x-full');
-        });
-
-        // Ambil elemen yang dibutuhkan
-        const scrollContainer = document.getElementById('scrollContainer');
-        const scrollLeftButton = document.getElementById('scrollLeft');
-        const scrollRightButton = document.getElementById('scrollRight');
-
-        // Fungsi untuk scroll ke kiri
-        scrollLeftButton.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: -300, // Geser 300px ke kiri
-                behavior: 'smooth' // Efek smooth scroll
-            });
-        });
-
-        // Fungsi untuk scroll ke kanan
-        scrollRightButton.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: 300, // Geser 300px ke kanan
-                behavior: 'smooth' // Efek smooth scroll
-            });
-        });
-
-        function openModal() {
-            document.getElementById("modal").classList.remove("hidden");
-        }
-        function closeModal() {
-            document.getElementById("modal").classList.add("hidden");
-        }
-        function handleTambah() {
-            // Tambahkan logika penambahan ke keranjang di sini jika perlu
-            closeModal(); // Menutup modal
-        }
     </script>
-    <script src="scripts.js"></script>
-
 </body>
 
 </html>
