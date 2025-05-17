@@ -19,7 +19,44 @@
 
 <body class="bg-gray-100">
     <!-- navbar -->
-
+    <nav
+        class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img class="rounded-full w-14 h-14 object-cover" src="img/Logo.jpeg" alt="Logo">
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-7 d-flex justify-center items-center">
+                    <a href="index.html" class="text-gray-800 hover:text-blue-600">Beranda</a>
+                    <a href="#about" class="text-gray-800 hover:text-blue-600">Tentang kami</a>
+                    <a href="menu.html" class="text-gray-800 hover:text-blue-600">Menu</a>
+                    <a href="#kontak" class="text-gray-800 hover:text-blue-600">Kontak</a>
+                    <a href="login.html"
+                        class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
+                        In</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-gray-800 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 rounded-lg shadow-md">
+            <a href="index.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Beranda</a>
+            <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tentang kami</a>
+            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
+            <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
+        </div>
+    </nav>
 
     <script>
         const menuButton = document.getElementById('menu-button');
