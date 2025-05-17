@@ -1,3 +1,4 @@
+// navbar
 const menuButton = document.getElementById('menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -54,12 +55,14 @@ const closeSidebar = document.getElementById('closeSidebar');
 const sidebar = document.getElementById('sidebar');
 
 // Logika untuk membuka sidebar
-toggleSidebar.addEventListener('click', () => {
-    sidebar.classList.remove('translate-x-full');
-});
+function openModal() {
+    document.getElementById('sidebar').classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+}
 
-// Logika untuk menutup sidebar
-closeSidebar.addEventListener('click', () => {
-    sidebar.classList.add('translate-x-full');
-});
+// Fungsi untuk menutup modal/sidebar
+function closeModal() {
+    document.getElementById('sidebar').classList.add('translate-x-full');
+    document.body.style.overflow = 'auto';
+}
 
