@@ -21,7 +21,9 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img class="rounded-full w-14 h-14 object-cover" src="img/Logo.jpeg" alt="Logo">
+                    <a href="index.html"> <img class="rounded-full w-14 h-14 object-cover" src="img/Logo.jpeg"
+                            alt="Logo">
+                    </a>
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-7 d-flex justify-center items-center">
@@ -358,71 +360,7 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // navbar
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        const navbar = document.getElementsByTagName('nav')[0];
-        window.addEventListener('scroll', function () {
-            console.log(window.scrollY);
-            if (window.scrollY > 1) {
-                navbar.classList.replace('bg-transparant', 'nav-color');
-            } else if (this.window.scrollY <= 0) {
-                navbar.classList.replace('nav-color', 'bg-transparant')
-            }
-        });
-        // sidebar
-        // Fungsi untuk membuka modal/sidebar
-        window.openModal = function () {
-            document.getElementById('sidebar').classList.remove('translate-x-full');
-            document.body.style.overflow = 'hidden';
-        }
-
-        window.closeModal = function () {
-            document.getElementById('sidebar').classList.add('translate-x-full');
-            document.body.style.overflow = 'auto';
-        }
-
-
-        // Fungsi untuk menambah jumlah item
-        function incrementValue(button) {
-            const input = button.previousElementSibling;
-            input.value = parseInt(input.value) + 1;
-        }
-
-        // Fungsi untuk mengurangi jumlah item
-        function decrementValue(button) {
-            const input = button.nextElementSibling;
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
-
-        function switchTab(tabId) {
-            // Sembunyikan semua section
-            document.getElementById("minuman").classList.add("hidden");
-            document.getElementById("makanan").classList.add("hidden");
-            document.getElementById("paket").classList.add("hidden");
-
-            // Tampilkan yang dipilih
-            document.getElementById(tabId).classList.remove("hidden");
-
-            // Reset semua tab styling
-            document.querySelectorAll(".tab-item").forEach(el => {
-                el.classList.remove("text-green-500", "border-green-500");
-                el.classList.add("text-gray-500", "border-transparent");
-            });
-
-            // Tambahkan styling ke tab aktif
-            event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 
 </html>
