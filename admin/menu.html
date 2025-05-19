@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed Admin Dashboard</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Main Container -->
+  <div class="flex h-screen">
+
+    <aside class="sidebar w-64 bg-blue-900 text-white fixed top-0 left-0 h-full flex flex-col">
+      <div class="p-5 text-lg font-bold border-b border-blue-700">
+        Admin Nasi Uduk 88
+      </div>
+      <nav class="mt-4 flex-grow">
+        <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+          <i class='bx bx-home-alt text-3xl'></i>
+          <span class="label">Beranda</span>
+        </a>
+        <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+          <i class='bx bx-food-menu  text-3xl' ></i>
+          <span class="label">Menu</span>
+        </a>
+        <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+          <i class='bx bx-signal-3  text-3xl'></i>
+          <span class="label">Laporan</span>
+        </a>
+        <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+          <i class='bx bx-cog  text-3xl' ></i>
+          <span class="label">Pengaturan</span>
+        </a>
+        <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+          <i class='bx bx-user text-3xl'></i>
+          <span class="label">Pengguna</span>
+        </a>
+      </nav>
+   
+      <a href="#" class="menu-item block py-2 px-4 hover:bg-blue-700 ">
+        <i class='bx bx-log-out text-3xl'></i>
+        <span class="label">Logout</span>
+      </a>
+    </aside>
+
+
+    <!-- Main Content Area -->
+    <div class="flex-1 ml-64 flex flex-col">
+
+      <!-- Navbar -->
+      <header class="bg-white shadow fixed top-0 left-64 right-0 z-10 flex items-center px-6 py-4">
+        <i class='bx bx-menu text-3xl mx-5'></i>
+        <!-- Left Section: Title and Breadcrumb -->
+        <div class="flex items-center space-x-4">
+          <div class="text-gray-700 text-lg font-semibold">Dashboard</div>
+          <nav class="text-sm text-gray-500">
+            <span>Home</span> > <span>Beranda</span>
+          </nav>
+        </div>
+
+        <!-- Center Section: Search Bar -->
+        <div class="flex-grow flex justify-center">
+          <div class="relative w-full max-w-md">
+            <input type="text" placeholder="Search..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-4.35-4.35m2.15-5.15a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Section: Icons -->
+        <div class="flex items-center space-x-7">
+          <!-- Notification Icon -->
+          <button class="relative text-gray-500 hover:text-blue-600 text-3xl">
+            <i class='bx bx-bell'></i>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-red-600 rounded-full"></span>
+          </button>
+
+          <!-- Profile Icon -->
+          <button class="text-gray-500 hover:text-blue-600 text-3xl">
+            <i class='bx bx-user'></i>
+          </button>
+        </div>
+
+      </header>
+
+
+      <!-- Main Content -->
+      <main class="flex-1 mt-16 p-6 overflow-y-auto">
+        <div class="flex justify-between items-center mb-5">
+          <!-- Tombol Tambah Menu -->
+          <button class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 focus:outline-none">
+            Tambah Menu
+          </button>
+        </div>
+    
+        <!-- Formulir Input Menu -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-4">Tambah Menu Baru</h2>
+          <form action="#" method="POST">
+            
+            <!-- Input Nama Menu -->
+            <div class="mb-4">
+              <label for="menu-name" class="block text-sm font-medium text-gray-700">Nama Menu</label>
+              <input type="text" id="menu-name" name="menu_name" class="w-full mt-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama menu">
+            </div>
+    
+            <!-- Input URL Tautan -->
+            <div class="mb-4">
+              <label for="menu-url" class="block text-sm font-medium text-gray-700">URL Tautan</label>
+              <input type="url" id="menu-url" name="menu_url" class="w-full mt-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Masukkan URL menu">
+            </div>
+    
+            <!-- Pilih Ikon Menu -->
+            <div class="mb-4">
+              <label for="menu-icon" class="block text-sm font-medium text-gray-700">Ikon Menu (Opsional)</label>
+              <input type="text" id="menu-icon" name="menu_icon" class="w-full mt-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Masukkan ikon menu (contoh: 📄)">
+            </div>
+    
+            <!-- Pengaturan Visibilitas -->
+            <div class="mb-4">
+              <label for="visibility" class="block text-sm font-medium text-gray-700">Pengaturan Visibilitas</label>
+              <select id="visibility" name="visibility" class="w-full mt-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                <option value="all">Untuk Semua Pengguna</option>
+                <option value="role">Berdasarkan Peran</option>
+                <option value="specific">Hanya Pengguna Tertentu</option>
+              </select>
+            </div>
+    
+            <!-- Tombol Simpan -->
+            <div class="mt-6 flex justify-between">
+              <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 focus:outline-none">
+                Simpan Menu
+              </button>
+              <button type="reset" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 focus:outline-none">
+                Reset Form
+              </button>
+            </div>
+          </form>
+        </div>
+    
+        <!-- Daftar Menu -->
+        <div class="mt-10">
+          <h2 class="text-xl font-semibold mb-4">Daftar Menu</h2>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <span class="text-lg font-semibold">Menu 1</span>
+                <span class="ml-2 text-sm text-gray-500">📄</span>
+              </div>
+              <div>
+                <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                <button class="ml-2 text-red-600 hover:text-red-800">Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
