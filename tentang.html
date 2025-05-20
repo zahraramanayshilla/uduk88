@@ -1,65 +1,66 @@
+<!-- about.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tentang Kami - Nasi Uduk 88 Brebes Berhias</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800">
 
-  <!-- Navbar -->
-  <header class="bg-white shadow-md p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <h1 class="text-xl font-bold">Nasi Uduk 88</h1>
-      <nav>
-        <a href="index.html" class="text-gray-700 hover:text-yellow-600 px-4">Beranda</a>
-        <a href="about.html" class="text-yellow-600 font-semibold px-4">Tentang</a>
-        <a href="contact.html" class="text-gray-700 hover:text-yellow-600 px-4">Kontak</a>
-      </nav>
+  <!-- Section: Header -->
+  <section class="text-center py-16 bg-gradient-to-r from-orange-100 via-yellow-50 to-orange-100">
+    <h1 class="text-4xl md:text-5xl font-bold text-orange-800">Tentang Kami</h1>
+    <p class="mt-4 text-lg max-w-xl mx-auto">Kenali lebih dekat usaha kuliner khas Brebes yang kami bangun dengan cinta dan cita rasa terbaik.</p>
+  </section>
+
+  <!-- Section: Owner -->
+  <section class="py-16 px-6 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <img src="img/ayam.png" alt="Pemilik" class="rounded-2xl shadow-lg w-full h-auto object-cover">
+      <div>
+        <h2 class="text-3xl font-bold mb-3 text-orange-700">Pemilik Usaha</h2>
+        <p class="text-lg">Nasi Uduk 88 Brebes Berhias didirikan oleh <strong>Bu Rina Wijayanti</strong>, seorang pegiat UMKM yang memulai bisnis ini dari dapur rumah dengan semangat ingin memperkenalkan cita rasa khas Brebes kepada masyarakat luas.</p>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <!-- About Content -->
-  <main class="px-6 py-12 max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-10">Tentang Kami</h2>
-
-    <!-- Owner -->
-    <section class="mb-12">
-      <h3 class="text-2xl font-semibold mb-2">Pemilik</h3>
-      <p class="text-base leading-relaxed">
-        Didirikan oleh <strong>Ibu Sari Wahyuni</strong>, seorang pengusaha kuliner asal Brebes yang telah
-        menekuni usaha nasi uduk sejak tahun 2010. Beliau menggabungkan resep keluarga dengan inovasi rasa
-        untuk menciptakan cita rasa khas yang disukai pelanggan.
-      </p>
-    </section>
-
-    <!-- Sejarah -->
-    <section class="mb-12">
-      <h3 class="text-2xl font-semibold mb-2">Sejarah</h3>
-      <p class="text-base leading-relaxed">
-        Bermula dari warung kaki lima di sudut pasar tradisional, kini Nasi Uduk 88 telah menjadi ikon kuliner lokal.
-        Dengan kerja keras dan dedikasi, usaha ini berkembang menjadi outlet tetap yang dikenal luas oleh masyarakat Brebes.
-      </p>
-    </section>
-
-    <!-- Services -->
-    <section>
-      <h3 class="text-2xl font-semibold mb-2">Layanan Kami</h3>
-      <ul class="list-disc list-inside space-y-2 text-base leading-relaxed">
-        <li>Makan di tempat dengan suasana nyaman</li>
-        <li>Take away dan delivery order (via WhatsApp atau ojek online)</li>
-        <li>Katering untuk berbagai acara (ulang tahun, syukuran, arisan)</li>
-        <li>Menu paket hemat dan spesial untuk sarapan atau makan siang</li>
-      </ul>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-white mt-12 py-6 shadow-inner">
-    <div class="text-center text-sm text-gray-500">
-      &copy; 2025 Nasi Uduk 88 Brebes Berhias. All rights reserved.
+  <!-- Section: Sejarah Usaha -->
+  <section class="py-16 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-orange-700 mb-4">Sejarah Usaha</h2>
+      <p class="text-lg">Berawal dari pesanan nasi uduk untuk acara keluarga dan tetangga pada tahun 2015, usaha ini tumbuh secara perlahan hingga kini memiliki cabang dan pelanggan setia. Dengan resep turun-temurun dan rasa autentik, kami terus menjaga kualitas dan kehangatan layanan.</p>
     </div>
+  </section>
+
+  <!-- Section: Layanan Kami -->
+  <section class="py-16 bg-orange-50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center text-orange-700 mb-10">Layanan Kami</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+          <img src="img/delivery-icon.png" alt="Delivery" class="w-16 mx-auto mb-4">
+          <h3 class="text-xl font-semibold text-orange-800 mb-2">Layanan Antar</h3>
+          <p>Kami menyediakan layanan antar langsung ke rumah atau kantor Anda dengan pesanan minimum.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+          <img src="img/catering-icon.png" alt="Catering" class="w-16 mx-auto mb-4">
+          <h3 class="text-xl font-semibold text-orange-800 mb-2">Catering Acara</h3>
+          <p>Terima pesanan untuk hajatan, pengajian, ulang tahun, dan acara kantor dengan menu yang bisa disesuaikan.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+          <img src="img/dinein-icon.png" alt="Dine In" class="w-16 mx-auto mb-4">
+          <h3 class="text-xl font-semibold text-orange-800 mb-2">Makan di Tempat</h3>
+          <p>Datang langsung ke lokasi kami dan nikmati hidangan dalam suasana hangat dan nyaman.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Footer -->
+  <footer class="bg-orange-700 text-white text-center py-6 mt-16">
+    <p>&copy; 2025 Nasi Uduk 88 Brebes Berhias. All rights reserved.</p>
   </footer>
 
 </body>
