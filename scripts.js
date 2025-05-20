@@ -68,23 +68,27 @@ window.switchTab = function (tabId, event) {
         event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
     }
 };
+// tab-control.js
 
+function switchTab(tabId, element) {
+    const sections = ["minuman", "makanan", "paket"];
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.classList.add("hidden");
+    });
 
-function switchTab(tabId) {
-    // Sembunyikan semua section
-    document.getElementById("minuman").classList.add("hidden");
-    document.getElementById("makanan").classList.add("hidden");
-    document.getElementById("paket").classList.add("hidden");
+    const activeSection = document.getElementById(tabId);
+    if (activeSection) activeSection.classList.remove("hidden");
 
-    // Tampilkan yang dipilih
-    document.getElementById(tabId).classList.remove("hidden");
-
-    // Reset semua tab styling
     document.querySelectorAll(".tab-item").forEach(el => {
-        el.classList.remove("text-green-500", "border-green-500");
+        el.classList.remove("text-green-500", "border-green-500", "border-b-2");
         el.classList.add("text-gray-500", "border-transparent");
     });
 
-    // Tambahkan styling ke tab aktif
-    event.target.classList.add("text-green-500", "border-b-2", "border-green-500");
+    if (element) {
+        element.classList.remove("text-gray-500", "border-transparent");
+        element.classList.add("text-green-500", "border-green-500", "border-b-2");
+    }
 }
+
+
