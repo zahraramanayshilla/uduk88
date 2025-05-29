@@ -3,19 +3,20 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" class="rounded-full" href="img/Logo_bulat.png" type="image">
-  <meta name="description" content="Nasi Uduk 88 Brebes Berhias - Tentang Kami">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/Logo_bulat.png" type="image">
+  <!-- tailwindcss -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Boxicons CSS -->
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+  <!-- web tracker -->
   <script type="module" src="https://cdn.jsdelivr.net/gh/domyid/tracker@main/index.js"></script>
-
   <title>Tentang Kami - Nasi Uduk 88 Brebes Berhias</title>
 </head>
 
 <body class="bg-gray-100">
-
   <!-- navbar -->
   <nav
     class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
@@ -101,26 +102,24 @@
   <section class="py-16 bg-orange-50 px-6">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold text-center text-orange-700 mb-10">Layanan Kami</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-          <img src="img/delivery-icon.png" alt="Delivery" class="w-16 mx-auto mb-4">
+
+      <!-- Layanan disusun tengah -->
+      <div class="flex flex-wrap justify-center gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition w-full md:w-1/3 max-w-sm">
+          <img src="img/gofud.png" alt="Delivery" class="w-16 mx-auto mb-4">
           <h3 class="text-xl font-semibold text-orange-800 mb-2">Layanan Antar</h3>
           <p>Kami menyediakan layanan antar langsung ke rumah atau kantor Anda dengan pesanan minimum.</p>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-          <img src="img/catering-icon.png" alt="Catering" class="w-16 mx-auto mb-4">
-          <h3 class="text-xl font-semibold text-orange-800 mb-2">Catering Acara</h3>
-          <p>Terima pesanan untuk hajatan, pengajian, ulang tahun, dan acara kantor dengan menu yang bisa disesuaikan.
-          </p>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-          <img src="img/dinein-icon.png" alt="Dine In" class="w-16 mx-auto mb-4">
+
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition w-full md:w-1/3 max-w-sm">
+          <img src="img/meja makan.png" alt="Dine In" class="w-16 mx-auto mb-4">
           <h3 class="text-xl font-semibold text-orange-800 mb-2">Makan di Tempat</h3>
           <p>Datang langsung ke lokasi kami dan nikmati hidangan dalam suasana hangat dan nyaman.</p>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- Section: Footer -->
   <!-- Footer -->

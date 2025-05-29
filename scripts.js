@@ -70,25 +70,62 @@ window.switchTab = function (tabId, event) {
 };
 // tab-control.js
 
-function switchTab(tabId, element) {
-    const sections = ["minuman", "makanan", "paket"];
-    sections.forEach(id => {
-        const section = document.getElementById(id);
-        if (section) section.classList.add("hidden");
+document.addEventListener('DOMContentLoaded', () => {
+    const tabItems = document.querySelectorAll('.tab-item');
+    const sections = ['minuman', 'makanan', 'paket'];
+
+    tabItems.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Hapus aktif dari semua tab
+            tabItems.forEach(item => {
+                item.classList.remove('text-green-500', 'border-b-2', 'border-green-500');
+                item.classList.add('text-gray-500');
+            });
+
+            // Aktifkan tab yang diklik
+            tab.classList.remove('text-gray-500');
+            tab.classList.add('text-green-500', 'border-b-2', 'border-green-500');
+
+            // Sembunyikan semua section
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) section.classList.add('hidden');
+            });
+
+            // Tampilkan section sesuai tab
+            const targetId = tab.getAttribute('onclick').match(/'([^']+)'/)[1];
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) targetSection.classList.remove('hidden');
+        });
     });
-
-    const activeSection = document.getElementById(tabId);
-    if (activeSection) activeSection.classList.remove("hidden");
-
-    document.querySelectorAll(".tab-item").forEach(el => {
-        el.classList.remove("text-green-500", "border-green-500", "border-b-2");
-        el.classList.add("text-gray-500", "border-transparent");
-    });
-
-    if (element) {
-        element.classList.remove("text-gray-500", "border-transparent");
-        element.classList.add("text-green-500", "border-green-500", "border-b-2");
-    }
-}
+});
 
 
+// login
+ document.addEventListener('DOMContentLoaded', () => {
+            const btnSignIn = document.getElementById('btn-signin');
+            const btnSignUp = document.getElementById('btn-signup');
+            const formSignIn = document.getElementById('form-signin');
+            const formSignUp = document.getElementById('form-signup');
+
+            // Simple form switching without animation
+            btnSignIn.addEventListener('click', () => {
+                btnSignIn.classList.add('tab-active');
+                btnSignIn.classList.remove('tab-inactive');
+                btnSignUp.classList.add('tab-inactive');
+                btnSignUp.classList.remove('tab-active');
+                
+                formSignIn.classList.remove('form-hidden');
+                formSignUp.classList.add('form-hidden');
+            });
+
+            btnSignUp.addEventListener('click', () => {
+                btnSignUp.classList.add('tab-active');
+                btnSignUp.classList.remove('tab-inactive');
+                btnSignIn.classList.add('tab-inactive');
+                btnSignIn.classList.remove('tab-active');
+                
+                formSignUp.classList.remove('form-hidden');
+                formSignIn.classList.add('form-hidden');
+            });
+        });
