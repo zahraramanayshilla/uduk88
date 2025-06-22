@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,54 +19,70 @@
 
 <body class="bg-gray-100">
     <!-- navbar -->
-    <nav
-        class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="index.html">
-                        <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover">
-                    </a>
-                </div>
+<!-- NAVBAR -->
+<nav
+    class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover" />
+                </a>
+            </div>
 
-                <!-- Navigation Links (Desktop) -->
-                <div class="hidden md:flex space-x-7 items-center">
-                    <a href="index.html" class="text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
-                    <a href="tentang.html" class="text-gray-800 hover:text-orange-600">Tentang
-                        Kami</a>
-                    <a href="menu.html" class="text-gray-800 hover:text-orange-600">Menu</a>
-                    <a href="#kontak" class="text-gray-800 hover:text-orange-600">Kontak</a>
-                    <a href="login.html"
-                        class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
-                        In</a>
-                </div>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-7 items-center">
+                <a href="index.html" class="text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+                <a href="tentang.html" class="text-gray-800 hover:text-orange-600">Tentang Kami</a>
+                <a href="menu.html" class="text-gray-800 hover:text-orange-600">Menu</a>
+                <a href="#kontak" class="text-gray-800 hover:text-orange-600">Kontak</a>
+                <a href="login.html"
+                    class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
+                    In</a>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="menu-button" class="text-gray-800 hover:text-orange-600 focus:outline-none">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
+                <!-- CART ICON (DESKTOP) -->
+                <button onclick="openModal()"
+                    class="hidden md:inline-flex text-yellow-700 hover:text-orange-600 relative">
+                    <i class='bx bx-cart text-2xl'></i>
+                    <span id="cartCount"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="menu-button" class="text-gray-800 hover:text-orange-600 focus:outline-none">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
         </div>
+    </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md ">
-            <a href="index.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
-            <a href="tentang.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tentang
-                Kami</a>
-            <a href="menu.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
-            <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
-            <a href="login.html"
-                class="block px-4 py-2 mt-3  text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
-                In</a>
-        </div>
-    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md transition duration-200 ease-in-out">
+        <a href="index.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+        <a href="tentang.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tentang Kami</a>
+        <a href="menu.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
+        <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
+        <a href="login.html"
+            class="block px-4 py-2 mt-3 text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
+            In</a>
+    </div>
+</nav>
+
+<!-- CART ICON FLOATING BUTTON (MOBILE ONLY) -->
+<button onclick="openModal()" id="cartBtn"
+    class="md:hidden fixed bottom-5 right-5 z-50 bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-full shadow-lg transition">
+    <i class='bx bx-cart text-2xl'></i>
+    <span id="cartCountMobile"
+        class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+</button>
 
     <!-- paralax -->
     <div class="relative h-screen parallax" style="background-image: url('./img/nasiudukbanner.png');">
@@ -131,10 +148,10 @@
 
     <!-- paralax menu -->
     <div class="relative h-screen parallax" style="background-image: url('./img/ayam.png');" id="menu">
-        <section class="absolute inset-0 bg-black bg-opacity-50 bg-grey-50 py-14 px-4 sm:px-6 lg:px-8">
+        <section class="absolute inset-0 bg-black bg-opacity-60 bg-grey-50 py-14 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="text-3xl font-bold text-orange-600 mb-5">🌟 Menu
-                    Best Seller 🌟</h2>
+                    Paket Nasi Uduk 🌟</h2>
                 <p class="text-white mb-12">Menu paling favorit yang wajib
                     kamu coba!</p>
 
@@ -244,8 +261,17 @@
                             </button>
                         </div>
                     </div>
+
+                </div>
+                <!-- Tombol Lihat Semua Menu -->
+                <div class="mt-12 flex justify-center">
+                    <a href="menu.html"
+                        class="flex items-center bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300">
+                        <i class='bx bx-fork-spoon mr-2 text-xl'></i> Lihat Semua Menu
+                    </a>
                 </div>
             </div>
+
         </section>
     </div>
 
