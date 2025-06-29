@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <!-- navbar -->
+    <!-- NAVBAR -->
     <nav
         class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,21 +25,27 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="index.html">
-                        <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover">
+                        <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover" />
                     </a>
                 </div>
-
-                <!-- Navigation Links (Desktop) -->
+    
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-7 items-center">
-                    <a href="index.html" class="text-gray-800 hover:text-orange-600">Beranda</a>
-                    <a href="tentang.html" class="text-gray-800 hover:text-orange-600">Tentang Kami</a>
-                    <a href="menu.html" class="text-yellow-800 font-bold hover:text-orange-600">Menu</a>
+                    <a href="index.html" class="text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+                    <a href="menu.html" class="text-gray-800 hover:text-orange-600">Menu</a>
                     <a href="#kontak" class="text-gray-800 hover:text-orange-600">Kontak</a>
+                    <!-- CART ICON (DESKTOP) -->
+                    <button onclick="openModal()"
+                        class="hidden md:inline-flex text-yellow-700 hover:text-orange-600 relative">
+                        <i class='bx bx-cart text-2xl'></i>
+                        <span id="cartCount"
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                    </button>
                     <a href="login.html"
                         class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
                         In</a>
                 </div>
-
+    
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="menu-button" class="text-gray-800 hover:text-orange-600 focus:outline-none">
@@ -52,18 +58,26 @@
                 </div>
             </div>
         </div>
-
+    
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md ">
-            <a href="index.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Beranda</a>
-            <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tentang Kami</a>
-            <a href="menu.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Menu</a>
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md transition duration-200 ease-in-out">
+            <a href="index.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+            <a href="menu.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
             <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
             <a href="login.html"
-                class="block px-4 py-2 mt-3  text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
+                class="block px-4 py-2 mt-3 text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
                 In</a>
         </div>
     </nav>
+    
+    <!-- CART ICON FLOATING BUTTON (MOBILE ONLY) -->
+    <button onclick="openModal()" id="cartBtn"
+        class="md:hidden fixed bottom-5 right-5 z-50 bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-full shadow-lg transition">
+        <i class='bx bx-cart text-2xl'></i>
+        <span id="cartCountMobile"
+            class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+    </button>
 
     <!-- Hero Parallax Section -->
     <section class="relative h-[650px] bg-fixed bg-center bg-cover"
