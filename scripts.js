@@ -98,9 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// keranjang
-let cart = [];
-let cartCount = 0;
+/// Ambil data cart dari localStorage jika ada
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 function openModal() {
     document.getElementById('sidebar').classList.remove('translate-x-full');
@@ -134,13 +137,15 @@ function updateCartUI() {
         cartContainer.innerHTML += html;
     });
 
-    document.getElementById('cartCount').textContent = cart.length;
-    document.getElementById('cartCountMobile').textContent = cart.length;
+    document.getElementById('cartCount').textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+    document.getElementById('cartCountMobile').textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+    saveCartToLocalStorage();
 }
 
 function addToCart(productCard) {
-    const name = productCard.querySelector('h3').textContent.trim();
-    const priceText = productCard.querySelector('.text-yellow-500').textContent.replace('Rp', '').replace('.', '').trim();
+    const name = productCard.querySelector('h2, h3').textContent.trim();
+    const priceElement = productCard.querySelector('.text-yellow-500');
+    const priceText = priceElement ? priceElement.textContent.replace('Rp', '').replace(/\./g, '').replace(',', '').trim() : "0";
     const image = productCard.querySelector('img').getAttribute('src');
     const price = parseInt(priceText);
 
@@ -153,7 +158,6 @@ function addToCart(productCard) {
 
     updateCartUI();
     showToast(`${name} berhasil ditambahkan ke keranjang!`);
-
 }
 
 // ✅ TOAST NOTIFICATION
@@ -173,7 +177,6 @@ function showToast(message) {
 function incrementValue(btn) {
     const input = btn.previousElementSibling;
     input.value = parseInt(input.value) + 1;
-
     updateQtyFromDOM();
 }
 
@@ -197,6 +200,8 @@ function updateQtyFromDOM() {
         const input = card.querySelector('input[type="number"]');
         cart[i].qty = parseInt(input.value);
     });
+    saveCartToLocalStorage();
+    updateCartUI();
 }
 
 // Menambahkan event listener saat halaman dimuat
@@ -209,4 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
             addToCart(card);
         });
     });
+
+    updateCartUI();
 });
