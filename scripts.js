@@ -97,8 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formSignIn.classList.add('form-hidden');
     });
 });
-
-/// Ambil data cart dari localStorage jika ada
+// Ambil data cart dari localStorage jika ada
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function saveCartToLocalStorage() {
@@ -113,32 +112,46 @@ function closeModal() {
     document.getElementById('sidebar').classList.add('translate-x-full');
 }
 
+function formatRupiah(number) {
+    return 'Rp ' + number.toLocaleString('id-ID');
+}
+
 function updateCartUI() {
     const cartContainer = document.querySelector('#sidebar .flex.flex-col');
-    cartContainer.innerHTML = ''; // Kosongkan isi dulu
+    cartContainer.innerHTML = '';
+
+    let subtotal = 0;
+
     cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
         const html = `
-                <div class="p-4 bg-white flex items-center w-full border rounded-lg">
-                    <img src="${item.image}" alt="${item.name}" class="h-20 w-20 mr-5 rounded object-cover">
-                    <div class="flex-1">
-                        <h2 class="font-semibold">${item.name}</h2>
-                        <div class="text-gray-500">Harga: <span class="font-medium">Rp ${item.price}</span></div>
-                        <div class="flex items-center mt-2">
-                            <button onclick="decrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
-                            <input type="number" value="${item.qty}" min="1" class="w-12 p-1 text-center border mx-1">
-                            <button onclick="incrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
-                        </div>
+            <div class="p-4 bg-white flex items-center w-full border rounded-lg">
+                <img src="${item.image}" alt="${item.name}" class="h-20 w-20 mr-5 rounded object-cover">
+                <div class="flex-1">
+                    <h2 class="font-semibold">${item.name}</h2>
+                    <div class="text-gray-500">Harga: <span class="font-medium">Rp ${item.price}</span></div>
+                    <div class="flex items-center mt-2">
+                        <button onclick="decrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
+                        <input type="number" value="${item.qty}" min="1" class="w-12 p-1 text-center border mx-1">
+                        <button onclick="incrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
                     </div>
-                    <button onclick="removeItem(${index})" class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
-                        <i class='bx bx-trash'></i>
-                    </button>
                 </div>
-                `;
+                <button onclick="removeItem(${index})" class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
+                    <i class='bx bx-trash'></i>
+                </button>
+            </div>
+        `;
         cartContainer.innerHTML += html;
     });
 
-    document.getElementById('cartCount').textContent = cart.reduce((acc, item) => acc + item.qty, 0);
-    document.getElementById('cartCountMobile').textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+    const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById('cartCount').textContent = totalItems;
+    document.getElementById('cartCountMobile').textContent = totalItems;
+
+    const serviceFee = 2000;
+    document.getElementById('subtotal').textContent = formatRupiah(subtotal);
+    document.getElementById('total').textContent = formatRupiah(subtotal + serviceFee);
+
     saveCartToLocalStorage();
 }
 
@@ -158,20 +171,6 @@ function addToCart(productCard) {
 
     updateCartUI();
     showToast(`${name} berhasil ditambahkan ke keranjang!`);
-}
-
-// ✅ TOAST NOTIFICATION
-function showToast(message) {
-    let toast = document.createElement("div");
-    toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-[9999] animate-bounce";
-    toast.innerText = message;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.add("opacity-0");
-        setTimeout(() => toast.remove(), 500);
-    }, 2000);
 }
 
 function incrementValue(btn) {
@@ -204,10 +203,20 @@ function updateQtyFromDOM() {
     updateCartUI();
 }
 
-// Menambahkan event listener saat halaman dimuat
+function showToast(message) {
+    let toast = document.createElement("div");
+    toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-[9999] animate-bounce";
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add("opacity-0");
+        setTimeout(() => toast.remove(), 500);
+    }, 2000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.add-to-cart');
-
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             const card = button.closest('.bg-white');
@@ -215,5 +224,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    updateCartUI();
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        updateCartUI();
+    }
+
+    const checkoutBtn = document.querySelector('.bg-green-500');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showToast("Keranjang masih kosong!");
+                return;
+            }
+
+            let message = `Halo, saya ingin memesan:\n`;
+            cart.forEach(item => {
+                message += `- ${item.name} x${item.qty} = Rp ${item.price * item.qty}\n`;
+            });
+
+            const subtotal = cart.reduce((total, item) => total + item.price * item.qty, 0);
+            const total = subtotal + 2000;
+
+            message += `\nSubtotal: Rp ${subtotal.toLocaleString('id-ID')}`;
+            message += `\nBiaya layanan: Rp 2.000`;
+            message += `\nTotal: Rp ${total.toLocaleString('id-ID')}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/6281252012576?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        });
+    }
 });
