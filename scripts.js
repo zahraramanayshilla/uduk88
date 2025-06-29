@@ -10,38 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// SIDEBAR: Fungsi buka/tutup modal
-window.openModal = function () {
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar) {
-        sidebar.classList.remove('translate-x-full');
-        document.body.style.overflow = 'hidden';
-    }
-};
-
-window.closeModal = function () {
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar) {
-        sidebar.classList.add('translate-x-full');
-        document.body.style.overflow = 'auto';
-    }
-};
-
-// INCREMENT: Tambah jumlah item
-window.incrementValue = function (button) {
-    const input = button.previousElementSibling;
-    if (input) {
-        input.value = parseInt(input.value) + 1;
-    }
-};
-
-// DECREMENT: Kurangi jumlah item
-window.decrementValue = function (button) {
-    const input = button.nextElementSibling;
-    if (input && parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-    }
-};
 
 // TABS: Ganti tab menu
 window.switchTab = function (tabId, event) {
@@ -102,30 +70,143 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // login
- document.addEventListener('DOMContentLoaded', () => {
-            const btnSignIn = document.getElementById('btn-signin');
-            const btnSignUp = document.getElementById('btn-signup');
-            const formSignIn = document.getElementById('form-signin');
-            const formSignUp = document.getElementById('form-signup');
+document.addEventListener('DOMContentLoaded', () => {
+    const btnSignIn = document.getElementById('btn-signin');
+    const btnSignUp = document.getElementById('btn-signup');
+    const formSignIn = document.getElementById('form-signin');
+    const formSignUp = document.getElementById('form-signup');
 
-            // Simple form switching without animation
-            btnSignIn.addEventListener('click', () => {
-                btnSignIn.classList.add('tab-active');
-                btnSignIn.classList.remove('tab-inactive');
-                btnSignUp.classList.add('tab-inactive');
-                btnSignUp.classList.remove('tab-active');
-                
-                formSignIn.classList.remove('form-hidden');
-                formSignUp.classList.add('form-hidden');
-            });
+    // Simple form switching without animation
+    btnSignIn.addEventListener('click', () => {
+        btnSignIn.classList.add('tab-active');
+        btnSignIn.classList.remove('tab-inactive');
+        btnSignUp.classList.add('tab-inactive');
+        btnSignUp.classList.remove('tab-active');
 
-            btnSignUp.addEventListener('click', () => {
-                btnSignUp.classList.add('tab-active');
-                btnSignUp.classList.remove('tab-inactive');
-                btnSignIn.classList.add('tab-inactive');
-                btnSignIn.classList.remove('tab-active');
-                
-                formSignUp.classList.remove('form-hidden');
-                formSignIn.classList.add('form-hidden');
-            });
+        formSignIn.classList.remove('form-hidden');
+        formSignUp.classList.add('form-hidden');
+    });
+
+    btnSignUp.addEventListener('click', () => {
+        btnSignUp.classList.add('tab-active');
+        btnSignUp.classList.remove('tab-inactive');
+        btnSignIn.classList.add('tab-inactive');
+        btnSignIn.classList.remove('tab-active');
+
+        formSignUp.classList.remove('form-hidden');
+        formSignIn.classList.add('form-hidden');
+    });
+});
+
+// keranjang
+let cart = [];
+let cartCount = 0;
+
+function openModal() {
+    document.getElementById('sidebar').classList.remove('translate-x-full');
+}
+
+function closeModal() {
+    document.getElementById('sidebar').classList.add('translate-x-full');
+}
+
+function updateCartUI() {
+    const cartContainer = document.querySelector('#sidebar .flex.flex-col');
+    cartContainer.innerHTML = ''; // Kosongkan isi dulu
+    cart.forEach((item, index) => {
+        const html = `
+                <div class="p-4 bg-white flex items-center w-full border rounded-lg">
+                    <img src="${item.image}" alt="${item.name}" class="h-20 w-20 mr-5 rounded object-cover">
+                    <div class="flex-1">
+                        <h2 class="font-semibold">${item.name}</h2>
+                        <div class="text-gray-500">Harga: <span class="font-medium">Rp ${item.price}</span></div>
+                        <div class="flex items-center mt-2">
+                            <button onclick="decrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
+                            <input type="number" value="${item.qty}" min="1" class="w-12 p-1 text-center border mx-1">
+                            <button onclick="incrementValue(this)" class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeItem(${index})" class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </div>
+                `;
+        cartContainer.innerHTML += html;
+    });
+
+    document.getElementById('cartCount').textContent = cart.length;
+    document.getElementById('cartCountMobile').textContent = cart.length;
+}
+
+function addToCart(productCard) {
+    const name = productCard.querySelector('h3').textContent.trim();
+    const priceText = productCard.querySelector('.text-yellow-500').textContent.replace('Rp', '').replace('.', '').trim();
+    const image = productCard.querySelector('img').getAttribute('src');
+    const price = parseInt(priceText);
+
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({ name, price, image, qty: 1 });
+    }
+
+    updateCartUI();
+    showToast(`${name} berhasil ditambahkan ke keranjang!`);
+
+}
+
+// ✅ TOAST NOTIFICATION
+function showToast(message) {
+    let toast = document.createElement("div");
+    toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-[9999] animate-bounce";
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add("opacity-0");
+        setTimeout(() => toast.remove(), 500);
+    }, 2000);
+}
+
+function incrementValue(btn) {
+    const input = btn.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+
+    updateQtyFromDOM();
+}
+
+function decrementValue(btn) {
+    const input = btn.nextElementSibling;
+    const val = parseInt(input.value);
+    if (val > 1) {
+        input.value = val - 1;
+        updateQtyFromDOM();
+    }
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function updateQtyFromDOM() {
+    const cards = document.querySelectorAll('#sidebar .flex.flex-col > div');
+    cards.forEach((card, i) => {
+        const input = card.querySelector('input[type="number"]');
+        cart[i].qty = parseInt(input.value);
+    });
+}
+
+// Menambahkan event listener saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.add-to-cart');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.bg-white');
+            addToCart(card);
         });
+    });
+});

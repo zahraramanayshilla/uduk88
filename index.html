@@ -20,69 +20,67 @@
 </head>
 
 <body class="bg-gray-100">
-    <!-- navbar -->
-<!-- NAVBAR -->
-<nav
-    class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <a href="index.html">
-                    <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover" />
-                </a>
-            </div>
+    <!-- NAVBAR -->
+    <nav
+        class="fixed top-[30px] left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] bg-white bg-opacity-80 backdrop-blur-md shadow-lg rounded-lg z-50 p-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="img/Logo.png" alt="Logo" class="rounded-full w-14 h-14 object-cover" />
+                    </a>
+                </div>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-7 items-center">
-                <a href="index.html" class="text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
-                <a href="menu.html" class="text-gray-800 hover:text-orange-600">Menu</a>
-                <a href="#kontak" class="text-gray-800 hover:text-orange-600">Kontak</a>
-                <a href="login.html"
-                    class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
-                    In</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-7 items-center">
+                    <a href="index.html" class="text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+                    <a href="menu.html" class="text-gray-800 hover:text-orange-600">Menu</a>
+                    <a href="#kontak" class="text-gray-800 hover:text-orange-600">Kontak</a>
+                    <!-- CART ICON (DESKTOP) -->
+                    <button onclick="openModal()"
+                        class="hidden md:inline-flex text-yellow-700 hover:text-orange-600 relative">
+                        <i class='bx bx-cart text-2xl'></i>
+                        <span id="cartCount"
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                    </button>
+                    <a href="login.html"
+                        class="bg-orange-700 hover:bg-orange-900 px-4 py-2 rounded-lg shadow text-white font-medium">Sign
+                        In</a>
+                </div>
 
-                <!-- CART ICON (DESKTOP) -->
-                <button onclick="openModal()"
-                    class="hidden md:inline-flex text-yellow-700 hover:text-orange-600 relative">
-                    <i class='bx bx-cart text-2xl'></i>
-                    <span id="cartCount"
-                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
-                </button>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="menu-button" class="text-gray-800 hover:text-orange-600 focus:outline-none">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-gray-800 hover:text-orange-600 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md transition duration-200 ease-in-out">
-        <a href="index.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
-        <a href="menu.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
-        <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
-        <a href="login.html"
-            class="block px-4 py-2 mt-3 text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
-            In</a>
-    </div>
-</nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-gray-200 rounded-lg shadow-md transition duration-200 ease-in-out">
+            <a href="index.html" class="block px-4 py-2 text-yellow-800 font-bold hover:text-orange-600">Beranda</a>
+            <a href="menu.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Menu</a>
+            <a href="#kontak" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kontak</a>
+            <a href="login.html"
+                class="block px-4 py-2 mt-3 text-center bg-orange-700 hover:bg-orange-900 text-white rounded-lg font-medium shadow">Sign
+                In</a>
+        </div>
+    </nav>
 
-<!-- CART ICON FLOATING BUTTON (MOBILE ONLY) -->
-<button onclick="openModal()" id="cartBtn"
-    class="md:hidden fixed bottom-5 right-5 z-50 bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-full shadow-lg transition">
-    <i class='bx bx-cart text-2xl'></i>
-    <span id="cartCountMobile"
-        class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
-</button>
+    <!-- CART ICON FLOATING BUTTON (MOBILE ONLY) -->
+    <button onclick="openModal()" id="cartBtn"
+        class="md:hidden fixed bottom-5 right-5 z-50 bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-full shadow-lg transition">
+        <i class='bx bx-cart text-2xl'></i>
+        <span id="cartCountMobile"
+            class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+    </button>
 
     <!-- paralax -->
     <div class="relative h-screen parallax" style="background-image: url('./img/nasiudukbanner.png');">
@@ -171,7 +169,7 @@
                         <div class="relative p-4">
                             <!-- Tombol untuk membuka sidebar -->
                             <!-- -->
-                            <button onclick="openModal()"
+                            <button
                                 class="absolute bottom-2 right-2 bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 ">
                                 <!-- hover:animate-bounce transition duration-300 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -197,8 +195,8 @@
                         <div class="relative p-4">
                             <!-- Tombol untuk membuka sidebar -->
                             <!-- -->
-                            <button onclick="openModal()"
-                                class="absolute bottom-2 right-2 bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 ">
+                            <button
+                                class="add-to-cart absolute bottom-2 right-2 bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 ">
                                 <!-- hover:animate-bounce transition duration-300 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -223,7 +221,7 @@
                         <div class="relative p-4">
                             <!-- Tombol untuk membuka sidebar -->
                             <!-- -->
-                            <button onclick="openModal()"
+                            <button
                                 class="absolute bottom-2 right-2 bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 ">
                                 <!-- hover:animate-bounce transition duration-300 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -250,7 +248,7 @@
                         <div class="relative p-4">
                             <!-- Tombol untuk membuka sidebar -->
                             <!-- -->
-                            <button onclick="openModal()"
+                            <button
                                 class="absolute bottom-2 right-2 bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 ">
                                 <!-- hover:animate-bounce transition duration-300 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -275,71 +273,51 @@
         </section>
     </div>
 
-    <!-- Sidebar -->
-    <div id="sidebar"
-        class="fixed top-0 right-0 h-full w-full sm:w-80 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-[1100] overflow-hidden">
+<!-- SIDEBAR KERANJANG -->
+<div id="sidebar"
+    class="fixed top-0 right-0 h-full w-full sm:w-80 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-[1100] overflow-hidden">
 
-        <!-- Header Sidebar dengan tombol Close -->
-        <div class="flex items-center justify-between p-4 border-b mb-3 bg-white sticky top-0 z-10">
-            <h2 class="text-xl font-semibold">Keranjang</h2>
-            <button onclick="closeModal()" class="text-gray-600 hover:text-red-500 text-xl">
-                ✖
-            </button>
-        </div>
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b bg-white sticky top-0 z-10">
+        <h2 class="text-xl font-semibold">Keranjang</h2>
+        <button onclick="closeModal()" class="text-gray-600 hover:text-red-500 text-xl">✖</button>
+    </div>
 
-        <!-- Daftar Produk (Scrollable jika banyak item) -->
-        <div class="overflow-y-auto p-5 h-[calc(100vh-150px)]">
-            <!-- Menghitung tinggi agar tidak melebihi layar -->
-            <div class="flex flex-col space-y-4">
-                <!-- Contoh Produk -->
-                <div class="p-4 bg-white flex items-center w-full border rounded-lg">
-                    <img src="img/ayam.png" alt="Product" class="h-20 w-20 mr-5 rounded object-cover">
-                    <div class="flex-1">
-                        <h2 class="font-semibold">Ayam Goreng</h2>
-                        <div class="text-gray-500">Harga: <span class="font-medium">Rp 35.000</span></div>
-                        <div class="flex items-center mt-2">
-                            <button onclick="decrementValue(this)"
-                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">-</button>
-                            <input type="number" value="1" min="1" class="w-12 p-1 text-center border mx-1">
-                            <button onclick="incrementValue(this)"
-                                class="border text-black px-2 py-1 rounded hover:bg-gray-100">+</button>
-                        </div>
-                    </div>
-                    <button
-                        class="bg-red-500 text-white py-2 px-2 rounded-lg font-semibold hover:bg-red-600 transition text-xl">
-                        <i class='bx bx-trash'></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Checkout (Fixed di bawah) -->
-        <div class="absolute bottom-0 left-0 w-full bg-white border-t p-4">
-            <div class="border border-orange-500 rounded-lg p-4 my-2">
-                <div class="flex justify-between mb-1">
-                    <span>Subtotal</span>
-                    <span>Rp 35.000</span>
-                </div>
-                <div class="flex justify-between mb-1">
-                    <span>Biaya layanan</span>
-                    <span>Rp 2.000</span>
-                </div>
-                <div class="flex justify-between font-bold text-orange-500 text-xl mt-2">
-                    <span>Total</span>
-                    <span>Rp 37.000</span>
-                </div>
-            </div>
-            <button
-                class="w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition mt-2">
-                Checkout
-            </button>
+    <!-- Kontainer Daftar Produk -->
+    <div class="overflow-y-auto p-4 h-[calc(100vh-180px)]">
+        <div id="cartItems" class="flex flex-col space-y-4">
+            <!-- Item akan ditambahkan melalui JavaScript -->
         </div>
     </div>
+
+    <!-- Footer Checkout -->
+    <div class="absolute bottom-0 left-0 w-full bg-white border-t p-4">
+        <div class="border border-orange-500 rounded-lg p-4 mb-3">
+            <div class="flex justify-between mb-1">
+                <span>Subtotal</span>
+                <span id="subtotal">Rp 0</span>
+            </div>
+            <div class="flex justify-between mb-1">
+                <span>Biaya layanan</span>
+                <span id="serviceFee">Rp 2.000</span>
+            </div>
+            <div class="flex justify-between font-bold text-orange-500 text-xl mt-2">
+                <span>Total</span>
+                <span id="total">Rp 2.000</span>
+            </div>
+        </div>
+        <button
+            class="w-full bg-green-500 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition">
+            Checkout
+        </button>
+    </div>
+</div>
+
     <!-- Section: Layanan Kami -->
     <section class="py-16 bg-orange-50 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl font-bold text-center text-orange-700 mb-10">Layanan Kami</h2>
-    
+
             <!-- Layanan disusun tengah -->
             <div class="flex flex-wrap justify-center gap-8">
                 <div
@@ -348,7 +326,7 @@
                     <h3 class="text-xl font-semibold text-orange-800 mb-2">Layanan Antar</h3>
                     <p>Kami menyediakan layanan antar langsung ke rumah atau kantor Anda dengan pesanan minimum.</p>
                 </div>
-    
+
                 <div
                     class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition w-full md:w-1/3 max-w-sm">
                     <img src="img/meja makan.png" alt="Dine In" class="w-16 mx-auto mb-4">
